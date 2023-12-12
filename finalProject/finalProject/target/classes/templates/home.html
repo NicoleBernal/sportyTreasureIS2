@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load("current", {
+            "packages": ["map"],
+            // Note: you will need to get a mapsApiKey for your project.
+            // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+            "mapsApiKey": "AIzaSyAnOr5MOQU4OVsFxH6jEkagfUbiD-jfG44"
+        });
+        google.charts.setOnLoadCallback(initialize);
+
+        function initialize() {
+            // Obtener la ubicación en tiempo real del usuario
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var userLat = position.coords.latitude;
+                var userLng = position.coords.longitude;
+
+                // Crear un mapa centrado en la ubicación del usuario
+                var map = new google.visualization.Map(document.getElementById('map_div'));
+
+                var data = new google.visualization.DataTable();
+                data.addColumn('number', 'Latitud');
+                data.addColumn('number', 'Longitud');
+                data.addColumn('string', 'Nombre');
+                data.addColumn({type: 'string', role: 'style'})
+
+              // Agregar la ubicación del usuario al conjunto de datos
+                data.addRow([userLat, userLng, 'Tu Ubicación','blue']);
+
+                // Puedes agregar más ubicaciones aquí si es necesario
+                data.addRow([4.135188510324772, -73.62181570342486, 'Parque la llanura','green'])
+                data.addRow([4.140198664504426, -73.62039864096681, 'Estadio Bello horizonte rey Pelé','green'])
+                data.addRow([4.147201500024859, -73.63294757987236, 'Teatro la Vorágine','green'])
+                data.addRow([4.145488302388137, -73.63136103836878, 'Pista de BMX','green'])
+                data.addRow([4.259234469619459, -73.56215153151601, 'Villa olimpica Restrepo','green'])
+                data.addRow([3.9910940664384227, -73.75689008013913, 'Villa olimpica Acacias','green'])
+
+
+                // Dibujar el mapa
+                map.draw(data, {
+                    showTooltip: true,
+                    showInfoWindow: true
+                });
+                // Enviar la ubicación al backend
+                enviarUbicacionAlServidor(userLat, userLng);
+            }, function (error) {
+                // Manejar errores de geolocalización
+                console.error('Error obteniendo la ubicación: ', error);
+            });
+        }
+
+        function enviarUbicacionAlServidor(lat, lng) {
+            // Configurar los datos a enviar en formato JSON
+            var data = {
+                latitud: lat,
+                longitud: lng
+            };
+
+            // Realizar la solicitud fetch para enviar la ubicación al servidor
+            fetch('/actualizar-ubicacion', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al enviar la ubicación al servidor');
+                    }
+                    // Puedes manejar la respuesta del servidor si es necesario
+                    console.log('Ubicación enviada exitosamente');
+                })
+                .catch(error => {
+                    console.error('Error en la solicitud fetch: ', error);
+                });
+        }
+    </script>
+    <title>Mapa</title>
+</head>
+
+<body>
+<div id="map_div" style="width: 800px; height: 700px"></div>
+</body>
+
+</html>

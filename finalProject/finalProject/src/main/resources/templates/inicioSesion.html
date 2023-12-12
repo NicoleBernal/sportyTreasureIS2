@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/inicioSesion.css}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <section class="logo">
+                <img src="static/assets/img.png" alt="Logo">
+                <h1>SportyTreasure</h1>
+            </section>
+            <ul>
+                <li><a th:href="@{/login}">Ya tengo cuenta</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="form-all">
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+                <form method="post">
+
+                    <p class="text-center">Inicia sesión:</p>
+
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="text" id="nombreUsuario" class="form-control" />
+                        <label class="form-label" for="nombreUsuario">Nombre de usuario</label>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <input type="password" id="contrasenia" class="form-control" />
+                        <label class="form-label" for="contrasenia">Contraseña</label>
+                    </div>
+
+                    <!-- 2 column grid layout -->
+                    <div class="row mb-4">
+                        <div class="col-md-6 d-flex justify-content-center">
+                            <!-- Checkbox -->
+                            <div class="form-check mb-3 mb-md-0">
+                                <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
+                                <label class="form-check-label" for="loginCheck"> Remember me </label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 d-flex justify-content-center">
+                            <!-- Simple link -->
+                            <a href="#!">Forgot password?</a>
+                        </div>
+                    </div>
+
+                    <!-- Submit button -->
+                    <a type="button" th:href="@{/home}" class="btn btn-primary btn-block mb-4" id="ingreso">Ingresar</a>
+
+                    <!-- Register buttons -->
+                    <div class="text-center">
+                        <p>Not a member? <a href="#" >Register</a></p>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        </section>
+    </main>
+    <script>
+        console.log("ENTRAMOSss")
+        document.getElementById("ingreso").addEventListener("click",async (e)=> {
+            //e.preventDefault();
+            console.log("ENTRAMOS");
+
+            const contrasenia = document.getElementById("contrasenia").value;
+            const nombreUsuario = document.getElementById("nombreUsuario").value;
+
+            let usuario = {
+                usuario: nombreUsuario,
+                contrasenia: contrasenia
+            };
+
+            await fetch("ingresos",{
+                method:"POST",
+                headers:{
+                    "Content-type":"application/json",
+                    "Accept":"application/json"
+                },
+                body:JSON.stringify(usuario)
+            });
+
+
+
+        });
+    </script>
+</body>
+</html>

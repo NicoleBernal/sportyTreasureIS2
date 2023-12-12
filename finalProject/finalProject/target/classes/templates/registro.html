@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/registroUsuario.css}">
+
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <section class="logo">
+                <img src="static/assets/img.png" alt="Logo">
+                <h1>SportyTreasure</h1>
+            </section>
+            <ul>
+                <li><a th:href="@{/login}">Ya tengo cuenta</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-lg-12 col-xl-11">
+                        <div class="card text-black" style="border-radius: 25px;">
+                            <div class="card-body p-md-5">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                                        <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Registrate!</p>
+
+                                        <form class="mx-1 mx-md-4"  method="post">
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input type="text"  id="nombre" class="form-control" />
+                                                    <label class="form-label" for="nombre">Nombre</label>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input type="text"  id="apellido" class="form-control"  pattern="[a-zA-Z ]{2,254}" />
+                                                    <label class="form-label" for="apellido">Apellido</label>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input type="number"  id="documento" class="form-control" />
+                                                    <label class="form-label" for="documento">Documento</label>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input type="text"  id="edad" class="form-control" />
+                                                    <label class="form-label" for="edad">Edad</label>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input type="text"  id="nombreUsuario" class="form-control" />
+                                                    <label class="form-label" for="nombreUsuario">Usuario</label>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input type="number" id="telefono" class="form-control" />
+                                                    <label class="form-label" for="telefono">Telefono</label>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input type="email"  id="correoE" class="form-control" />
+                                                    <label class="form-label" for="correoE">Correo Electronico</label>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input type="password"  id="contrasenia" class="form-control" />
+                                                    <label class="form-label" for="contrasenia">Contraseña</label>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input type="password"  id="contrasenia_confirm" class="form-control" />
+                                                    <label class="form-label" for="contrasenia_confirm">Repite tu contraseña</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-check d-flex  mb-5">
+                                                <input class="form-check-input me-2" type="checkbox" value="" id="terminos" />
+                                                <label class="form-check-label" for="terminos">
+                                                    Estoy de acuerdo con todas las declaraciones en los <a href="#!">Terminos de uso</a>
+                                                </label>
+                                            </div>
+
+                                            <a th:href="@{/login}" id="register" class="btn btn-primary btn-lg">
+                                                Register
+                                            </a>
+
+                                        </form>
+
+                                    </div>
+                                    <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                                        <img src="https://www.bois-colombes.fr/wp-content/uploads/2021/09/sport-2.svg"
+                                             class="img-fluid" alt="Diferentes personas haciendo distintos deportes">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById("register").addEventListener("click",async (e)=>{
+
+           // e.preventDefault();
+            console.log("ENTRO")
+            const nombre = document.getElementById("nombre");
+            const  nombreUsuario = document.getElementById("nombreUsuario");
+            const apellido = document.getElementById("apellido");
+            const documento = document.getElementById("documento");
+            const edad = document.getElementById("edad");
+            const telefono = document.getElementById("telefono");
+            const correo = document.getElementById("correoE");
+            const contrasenia = document.getElementById("contrasenia");
+            const contraseniaConfirm = document.getElementById("contrasenia_confirm");
+
+
+            let usuario = {};
+
+
+            if (contraseniaConfirm.value===contrasenia.value){
+                usuario.nombre = nombre.value;
+                usuario.usuario= nombreUsuario.value;
+                usuario.apellido = apellido.value;
+                usuario.documento = documento.value;
+                usuario.edad = edad.value;
+                usuario.telefono = telefono.value;
+                usuario.correo = correo.value;
+                usuario.contrasenia = contrasenia.value;
+                console.log("ENTROX2")
+            }
+            else return;
+
+
+            await fetch("registros",{
+                method:"POST",
+                headers:{
+                    "Content-type":"application/json",
+                    "Accept":"application/json"
+                },
+                body:JSON.stringify(usuario)
+            });
+
+
+        });
+
+
+    </script>
+</body>
+</html>
